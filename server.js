@@ -53,8 +53,30 @@ app.get('/', function(request, response){
 // For now, since we aren't yet connected to a database, let's hard code an array of JSON objects in our server file. 
 // Add this below the 2 import statements at the top of your server.js file:
 // We'll return this list of quotes as JSON. With that, our GET /quotes route is defined as:
+// app.get('/quotes', function(req, res){
+//     console.log("Get a list of all quotes as json:");
+//     res.json(quotes)
+    
+// })
+
+// Filtering/Query Strings
+// Query strings can be included in the
+//  request URI in the following format: baseURL/path?query=value 
+// With query being the name of the query string, and value being its value.
+// n Express, we can access these query strings 
+// in a route callback function using req.query.<queryString>, where <queryString>
+//  is the name of the value you are expecting.
+// We'll handle this within the same GET /quotes endpoint,
+//  since we're not working with a different resource
+//  so copy the above code and paste it here to modify function and make it comment in above lines
 app.get('/quotes', function(req, res){
-    console.log("Get a list of all quotes as json:");
+    if(req.query.year){
+        res.send("Return a list of quotes from the year: " + req.query.year);
+    }
+    else{
+        console.log("Get a list of all quotes as json:");
     res.json(quotes)
+    }
+    
     
 })

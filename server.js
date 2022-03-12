@@ -8,3 +8,8 @@ var app = express();
 var port = 3000;
 // This is the port your server will use to listen for requests. 
 // Clients will send requests to this port to access the server.
+
+// Use the express listen function to instruct the server to start listening,
+app.listen(port, function(){
+    console.log("Express is listening to port:" + port)
+})

@@ -73,9 +73,7 @@ app.get('/quotes', function(req, res){
     if(req.query.year){
         res.send("Return a list of quotes from the year: " + req.query.year );
     }
-    if(req.query.id){
-        res.send("give me id:" + req.query.id )
-    }
+    
     else{
         console.log("Get a list of all quotes as json:");
     res.json(quotes)
@@ -93,7 +91,7 @@ app.get('/quotes', function(req, res){
 //  the path for this request would be:
 // /quotes/2
 app.get('/quotes/:id', function(req, res){
-    console.log("Return the quote with id:", req.params.id);
-    res.send("Return quote with the ID:" req.params.id);
+    console.log("Return the quote with id:" + req.params.id);
+    res.send("Return quote with the ID:" + req.params.id);
 })
 //Here, we are accessing the dynamic id parameter value using req.params.id.

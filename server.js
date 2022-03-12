@@ -71,10 +71,10 @@ app.get('/', function(request, response){
 //  so copy the above code and paste it here to modify function and make it comment in above lines
 app.get('/quotes', function(req, res){
     if(req.query.year){
-        res.send("Return a list of quotes from the year: " + req.query.year);
+        res.send("Return a list of quotes from the year: " + req.query.year );
     }
     if(req.query.id){
-        res.send("give me id:" + req.query.id)
+        res.send("give me id:" + req.query.id )
     }
     else{
         console.log("Get a list of all quotes as json:");

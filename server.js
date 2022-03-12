@@ -23,3 +23,5 @@ app.listen(port, function(){
 app.get('/', function(request, response){
     response.send("Get request received at '/'")
 })
+//  Now start the server with node server.js in terminal and then go on to localhost:3000
+// to see the message "Get request reeceived at '/"

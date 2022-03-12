@@ -83,3 +83,17 @@ app.get('/quotes', function(req, res){
     
     
 })
+// If the endpoint for the Express API were defined as: GET /cars/:make,
+//  then the value "Toyota" would automatically be processed into the make parameter within the GET /cars route.
+// In an Express app, we can then access these parameters using req.params.<param>, 
+// where <param> is the name of the named route parameter.
+// Get a quote by id
+// In our case, we want to define an endpoint that accepts an id parameter that 
+// returns the corresponding quote by id. When requesting the quote with an id of 2,
+//  the path for this request would be:
+// /quotes/2
+app.get('/quotes/:id', function(req, res){
+    console.log("Return the quote with id:", req.params.id);
+    res.send("Return quote with the ID:" req.params.id);
+})
+//Here, we are accessing the dynamic id parameter value using req.params.id.

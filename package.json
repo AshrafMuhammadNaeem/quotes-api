@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/AshrafMuhammadNaeem/quotes-api#readme",
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "nodeman": "^1.1.2",
+    "nodemon": "^2.0.15"
   }
 }

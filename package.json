@@ -1,0 +1,22 @@
+{
+  "name": "quotes-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AshrafMuhammadNaeem/quotes-api.git"
+  },
+  "author": "Mohammad Naeem Ashraf",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AshrafMuhammadNaeem/quotes-api/issues"
+  },
+  "homepage": "https://github.com/AshrafMuhammadNaeem/quotes-api#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}

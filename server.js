@@ -13,3 +13,13 @@ var port = 3000;
 app.listen(port, function(){
     console.log("Express is listening to port:" + port)
 })
+
+// Setup Routes to Handle Requests
+
+//     Lets first handle the most route that our browser just tried to access: GET ' / ' . 
+// This is the request that is sent when you try to access the root (homepage) of your server.
+// Use the express app.get function to create a route for the GET  ' / ' endpoint.
+// accepts requests at the GET / endpoint, and responds with the message "Get request received at '/'"
+app.get('/', function(request, response){
+    response.send("Get request received at '/'")
+})

@@ -73,7 +73,9 @@ app.get('/quotes', function(req, res){
     if(req.query.year){
         res.send("Return a list of quotes from the year: " + req.query.year );
     }
-    
+    if(req.query.id){
+        res.send("give me id:" + req.query.id )
+    }
     else{
         console.log("Get a list of all quotes as json:");
     res.json(quotes)
@@ -95,3 +97,27 @@ app.get('/quotes/:id', function(req, res){
     res.send("Return quote with the ID:" + req.params.id);
 })
 //Here, we are accessing the dynamic id parameter value using req.params.id.
+// Now that we've set up 2 GET Routes in our API,
+//  let's add a POST route that will allow users to send data to be stored.
+// Our POST endpoint will be used when a user submits data to store a new quote.
+// In this case, this data will include the quote string, the author string, and a year value.
+// We can access this data in key-value pairs using req.body, but only after the data has been parsed into this format. We can install body-parsing middleware that retrieves data from the request body message, and parses it into these key-value pairs for us.
+
+// We'll use a middleware called body-parser. In order to use body-parser, complete the following steps:
+// Install body-parser and save it as a dependency for your Node.js project, by running the following 
+// command in your command-line interface within your project folder: npm install --save body-parser
+// In your server.js file, require body-parser with the following line of code:
+var bodyParser = require('body-parser');
+// Use app.use() to tell your Express app to use body-parser as middleware for
+//  url-encoded form data (this is the data format we expect to receive from HTML forms)
+app.use(bodyParser.urlencoded({extended: true}))
+// Once we complete these steps, we can use req.body to access 
+// the key-value pairs of data that were passed in the request body for a POST request.
+// Our POST /quotes route will be defined as:
+app.post('/quotes', function(req, res){
+    console.log("insert a new quote" + req.body.quote);
+    res.json(req.body)
+})
+
+// We are using req.body.quote to get the quote string, and sending the full JSON object 
+// representing all of the quote's data (quote, author, year), using req.body.

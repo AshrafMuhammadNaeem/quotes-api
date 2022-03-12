@@ -52,3 +52,9 @@ app.get('/', function(request, response){
 // Let's start with the GET /quotes route, which returns a list of all quotes.
 // For now, since we aren't yet connected to a database, let's hard code an array of JSON objects in our server file. 
 // Add this below the 2 import statements at the top of your server.js file:
+// We'll return this list of quotes as JSON. With that, our GET /quotes route is defined as:
+app.get('/quotes', function(req, res){
+    console.log("Get a list of all quotes as json:");
+    res.json(quotes)
+    
+})

@@ -6,3 +6,5 @@ var express = require('express')
 var app = express();
 // Create a variable to store the port # your server will run on.
 var port = 3000;
+// This is the port your server will use to listen for requests. 
+// Clients will send requests to this port to access the server.

@@ -121,3 +121,18 @@ app.post('/quotes', function(req, res){
 
 // We are using req.body.quote to get the quote string, and sending the full JSON object 
 // representing all of the quote's data (quote, author, year), using req.body.
+// To connect to a SQLite database from a Node.js project,  complete the following steps:\
+// Install the sqlite3 module using Node Package Manager, and save as a project dependency:
+// npm install sqlite3 --save
+
+// Import the sqlite3 module in your Node.js project:
+var sqlite3 = require('sqlite3');
+// Connect to DataBase
+var db = new sqlite3.Database('myDatabase.db');
+// // The first parameter of the sqlite3.Database function specifies the database to connect to or create.
+// This can be a database file path, like above, or the string ':memory:',
+//  to connect to a temporary in-memory database. By default, when connecting to a persistent database, 
+// the database will be created if it does not already exist at the file path provided.
+// Once you've connected to a database using the sqlite3 module,
+//  you'll use the db object to run queries to work with the database.
+

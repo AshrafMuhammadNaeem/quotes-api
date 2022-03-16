@@ -138,11 +138,32 @@ var db = new sqlite3.Database('myDatabase.db');
 // The run() method allows us to run simple SQL statements 
 // that don't return query results, such as INSERT and CREATE.
 
+
+
+// The db.serialize() function ensures that the statements within it are executed in order. 
+// Node.js is asynchronous, so statements are not guaranteed to be executed one after another otherwise.
+//  If we didn't use the serialize() function here, it's possible that the INSERT statement would run 
+//  before the CREATE statement completed, resulting in an error.
+// The db.close() function closes the database connection once we have completed running queries.
+// Running Select Statements
+// There are 3 sqlite3 methods that allow for processing SELECT statements:
+
+//     all(): run a SELECT statement and process the resulting set of rows
+//     each(): run a SELECT statement and process one resulting row at a time
+//     get(): run a SELECT statement and process the first result (if it exists)
+// ach of these methods accepts a SQL query to execute,
+//  an optional set of parameters to dynamically modify the SQL statement, 
+// and a callback function to process the result and/or process errors.
+//   db.<method>(sql, params, callback);
+
 db.serialize(function(){
     // Create Table
     db.run('CREATE TABLE Contacts( FirstName Text, LastName Text, Age INTEGER)');
     // Insert data into Table
     db.run('INSERT INTO Contacts VALUES("Saleem", "Ashraf", 33)');
+    db.run('INSERT INTO Contacts VALUES("Alice", "Moldov", 27)');
+    db.run('INSERT INTO Contacts VALUES("Shafique", "Ashraf", 36)');
 })
 db.close();
+
 

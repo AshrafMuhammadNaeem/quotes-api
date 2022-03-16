@@ -135,4 +135,14 @@ var db = new sqlite3.Database('myDatabase.db');
 // the database will be created if it does not already exist at the file path provided.
 // Once you've connected to a database using the sqlite3 module,
 //  you'll use the db object to run queries to work with the database.
+// The run() method allows us to run simple SQL statements 
+// that don't return query results, such as INSERT and CREATE.
+
+db.serialize(function(){
+    // Create Table
+    db.run('CREATE TABLE Contacts( FirstName Text, LastName Text, Age INTEGER)');
+    // Insert data into Table
+    db.run('INSERT INTO Contacts VALUES("Saleem", "Ashraf", 33)');
+})
+db.close();
 

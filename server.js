@@ -127,8 +127,8 @@ app.post('/quotes', function(req, res){
 
 // Import the sqlite3 module in your Node.js project:
 var sqlite3 = require('sqlite3');
-// Connect to DataBase
-var db = new sqlite3.Database('myDatabase.db');
+// Connect to DataBase now the permanent one quotes.db
+var db = new sqlite3.Database('quotes.db');
 // // The first parameter of the sqlite3.Database function specifies the database to connect to or create.
 // This can be a database file path, like above, or the string ':memory:',
 //  to connect to a temporary in-memory database. By default, when connecting to a persistent database, 
@@ -215,5 +215,6 @@ function getRow(err, row){
 }
 
 db.close();
-
+// Here, we create a database table in an in-memory database, 
+// populate it with 3 entries, and run several SQL queries.
 

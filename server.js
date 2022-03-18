@@ -4,6 +4,9 @@ var express = require('express')
 // Use the express function to create an express app object. 
 // This will always be the first step we'll take to use express in our project:
 var app = express();
+
+// Import the sqlite3 module in your Node.js project:
+var sqlite3 = require('sqlite3');
 // here below will come hard coded data base for quotes
 var quotes = [
     {
@@ -25,6 +28,9 @@ var quotes = [
         year: 1910
     }
     ];
+
+// Connect to DataBase now the permanent one quotes.db
+var db = new sqlite3.Database('quotes.db');
 // Create a variable to store the port # your server will run on.
 var port = 3000;
 // This is the port your server will use to listen for requests. 
@@ -125,10 +131,7 @@ app.post('/quotes', function(req, res){
 // Install the sqlite3 module using Node Package Manager, and save as a project dependency:
 // npm install sqlite3 --save
 
-// Import the sqlite3 module in your Node.js project:
-var sqlite3 = require('sqlite3');
-// Connect to DataBase now the permanent one quotes.db
-var db = new sqlite3.Database('quotes.db');
+
 // // The first parameter of the sqlite3.Database function specifies the database to connect to or create.
 // This can be a database file path, like above, or the string ':memory:',
 //  to connect to a temporary in-memory database. By default, when connecting to a persistent database, 

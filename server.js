@@ -82,8 +82,8 @@ app.get('/quotes', function(req, res){
     // otherwise, run a SELECT statement that returns the entire set of quotes from the database as JSON
     if(req.query.year){
         
-        db.get('SELECT * FROM quotes WHERE year = ?' [req.query.year], function(err, rows){
-            console.log("Get This Year Quote:");
+        db.all('SELECT * FROM quotes WHERE year = ?' [req.query.year], function(err, rows){
+           
             if(err){
                 res.send(err.message);
             }

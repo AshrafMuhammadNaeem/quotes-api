@@ -185,65 +185,65 @@ app.post('/quotes', function(req, res){
 // and a callback function to process the result and/or process errors.
 //   db.<method>(sql, params, callback);
 
-db.serialize(function(){
-    // Create Table
-    db.run('CREATE TABLE Contacts( FirstName Text, LastName Text, Age INTEGER)');
-    // Insert data into Table
-    db.run('INSERT INTO Contacts VALUES("Saleem", "Ashraf", 33)');
-    db.run('INSERT INTO Contacts VALUES("Alice", "Moldov", 27)');
-    db.run('INSERT INTO Contacts VALUES("Shafique", "Ashraf", 36)');
+// db.serialize(function(){
+//     // Create Table
+//     db.run('CREATE TABLE Contacts( FirstName Text, LastName Text, Age INTEGER)');
+//     // Insert data into Table
+//     db.run('INSERT INTO Contacts VALUES("Saleem", "Ashraf", 33)');
+//     db.run('INSERT INTO Contacts VALUES("Alice", "Moldov", 27)');
+//     db.run('INSERT INTO Contacts VALUES("Shafique", "Ashraf", 36)');
 
-    // Running Queries
-    db.all('SELECT * FROM Contacts', getRows);
-    // The each() method allows you to run a SQL query and provide a callback function that
-    //  processes one row at a time from the resulting set of rows.
-    db.each('SELECT * FROM Contacts', getRow);
-    db.each('SELECT * FROM Contacts WHERE FirstName = "Saleem" ', getRow);
+//     // Running Queries
+//     db.all('SELECT * FROM Contacts', getRows);
+//     // The each() method allows you to run a SQL query and provide a callback function that
+//     //  processes one row at a time from the resulting set of rows.
+//     db.each('SELECT * FROM Contacts', getRow);
+//     db.each('SELECT * FROM Contacts WHERE FirstName = "Saleem" ', getRow);
 
-    // Note that we use the get() method when we expect at most 1 result.
-   // SQL Statement Parameters
-    // Note in the get() method call above, we use the '?' symbol to include parameters in our SQL query. 
-    // This provides a way to dynamically insert data into a SQL query,
-    //  as opposed to hard coding all values in the query string.
-    var firstName = "Saleem";
-    db.get('SELECT * FROM Contacts WHERE FirstName = ?,' [firstName], function (err, row) {
-        console.log("Get Saleem's Age:");
-        if(err){
-            console.log("Error:" + err.message);
-        }
-        else {
-            console.log(row.Age)
-        }
+//     // Note that we use the get() method when we expect at most 1 result.
+//    // SQL Statement Parameters
+//     // Note in the get() method call above, we use the '?' symbol to include parameters in our SQL query. 
+//     // This provides a way to dynamically insert data into a SQL query,
+//     //  as opposed to hard coding all values in the query string.
+//     var firstName = "Saleem";
+//     db.get('SELECT * FROM Contacts WHERE FirstName = ?,' [firstName], function (err, row) {
+//         console.log("Get Saleem's Age:");
+//         if(err){
+//             console.log("Error:" + err.message);
+//         }
+//         else {
+//             console.log(row.Age)
+//         }
         
-    });
-});
+//     });
+// });
 
-function getRows(err, rows){
-    console.log("PROCESS ROWS:")
-    if (err){
-        console.log("Error:" + err.message);
+// function getRows(err, rows){
+//     console.log("PROCESS ROWS:")
+//     if (err){
+//         console.log("Error:" + err.message);
 
-    }
-    else{
-        for (var = i; i <rows.length; i++){
-            console.log(rows[i].FirstName)
-        }
-    }
+//     }
+//     else{
+//         for (var i = 0; i <rows.length; i++){
+//             console.log(rows[i].FirstName)
+//         }
+//     }
 
-}
-function getRow(err, row){
-    console.log("PROCESS First ROW:")
-    if (err){
-        console.log("Error:" + err.message);
+// }
+// function getRow(err, row){
+//     console.log("PROCESS First ROW:")
+//     if (err){
+//         console.log("Error:" + err.message);
 
-    }
-    else{
-        console.log(row.FirstName);
-        }
+//     }
+//     else{
+//         console.log(row.FirstName);
+//         }
     
-}
+// }
 
-db.close();
-// Here, we create a database table in an in-memory database, 
-// populate it with 3 entries, and run several SQL queries.
+// db.close();
+// // Here, we create a database table in an in-memory database, 
+// // populate it with 3 entries, and run several SQL queries.
 

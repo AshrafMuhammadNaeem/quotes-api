@@ -94,12 +94,17 @@ app.get('/quotes', function(req, res){
         });
         
     }
-    if(req.query.id){
-        res.send("give me id:" + req.query.id )
-    }
-    else{
-        console.log("Get a list of all quotes as json:");
-    res.json(quotes)
+    function getQuotes(err, rows){
+        console.log('GET Quotes');
+        if (err){
+            res.send(err.message)
+        }
+        else{
+            for (var i = 0; i < quotes.length; i++){
+                console.log(rows[i].quote)
+            }
+            res.json(rows)
+        }
     }
     
     

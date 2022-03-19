@@ -47,9 +47,33 @@ app.listen(port, function(){
 // This is the request that is sent when you try to access the root (homepage) of your server.
 // Use the express app.get function to create a route for the GET  ' / ' endpoint.
 // accepts requests at the GET / endpoint, and responds with the message "Get request received at '/'"
-app.get('/', function(request, response){
-    response.send("Get request received at '/'")
-})
+// app.get('/', function(request, response){
+//     response.send("Get request received at '/'")
+// })
+//  Now Queries in db format
+db.all('SELECT * FROM Quotes', getQuotes);
+var Year = 1910 ;
+db.get('SELECT * FROM Quotes WHERE year = ?' [Year], function(err, response){
+    console.log("Get This Year Quote:");
+    if(err){
+        console.log("ERROR: " + err.message);
+    }
+    else{
+        console.log(response.year);
+    }
+});
+
+function getQuotes(err, res){
+    console.log('GET Quotes');
+    if (err){
+        console.log("Errro" + err.message)
+    }
+    else{
+        for (var i = 0; i < quotes.length; i++){
+            console.log(rows[i].quote)
+        }
+    }
+}
 //  Now start the server with node server.js in terminal and then go on to localhost:3000
 // to see the message "Get request reeceived at '/"
 

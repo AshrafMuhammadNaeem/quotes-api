@@ -82,7 +82,7 @@ app.get('/quotes', function(req, res){
     // otherwise, run a SELECT statement that returns the entire set of quotes from the database as JSON
     if(req.query.year){
         
-        db.all('SELECT * FROM quotes WHERE year = ?', [req.query.year], function(err, rows){
+        db.get('SELECT * FROM quotes WHERE year = ?', [req.query.year], function(err, rows){
            
             if(err){
                 res.send(err.message);
@@ -93,7 +93,7 @@ app.get('/quotes', function(req, res){
             }
         });
         
-    }
+    }}
     else{
         db.all('SELECT * FROM quotes', function getQuotes(err, rows){
             console.log('GET Quotes');

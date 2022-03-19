@@ -47,21 +47,11 @@ app.listen(port, function(){
 // This is the request that is sent when you try to access the root (homepage) of your server.
 // Use the express app.get function to create a route for the GET  ' / ' endpoint.
 // accepts requests at the GET / endpoint, and responds with the message "Get request received at '/'"
-// app.get('/', function(request, response){
-//     response.send("Get request received at '/'")
-// })
+app.get('/', function(request, response){
+    response.send("Get request received at '/'")
+})
 //  Now Queries in db format
-db.all('SELECT * FROM Quotes', getQuotes);
-var Year = 1910 ;
-db.get('SELECT * FROM Quotes WHERE year = ?' [Year], function(err, response){
-    console.log("Get This Year Quote:");
-    if(err){
-        console.log("ERROR: " + err.message);
-    }
-    else{
-        console.log(response.year);
-    }
-});
+
 
 function getQuotes(err, res){
     console.log('GET Quotes');
@@ -99,8 +89,22 @@ function getQuotes(err, res){
 // We'll handle this within the same GET /quotes endpoint,
 //  since we're not working with a different resource
 //  so copy the above code and paste it here to modify function and make it comment in above lines
+
 app.get('/quotes', function(req, res){
+    //Try to modify the body of the GET /quotes route in your server.js file as follows:
+    // if there is a year filter provided, run a SELECT statement with a WHERE clause to select all quotes with the given year, and return the resulting set of quotes as JSON.
+    // otherwise, run a SELECT statement that returns the entire set of quotes from the database as JSON
     if(req.query.year){
+        db.all('SELECT * FROM Quotes', getQuotes);
+        db.get('SELECT * FROM Quotes WHERE year = ?' [req.query.year], function(err, rows){
+            console.log("Get This Year Quote:");
+            if(err){
+                res.send(err.message);
+            }
+            else{
+                console.log(response.year);
+            }
+        });
         res.send("Return a list of quotes from the year: " + req.query.year );
     }
     if(req.query.id){

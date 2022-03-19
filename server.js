@@ -82,18 +82,18 @@ app.get('/quotes', function(req, res){
     // otherwise, run a SELECT statement that returns the entire set of quotes from the database as JSON
     if(req.query.year){
         
-        db.get('SELECT * FROM quotes WHERE year = ?', [req.query.year], function(err, rows){
+        db.get('SELECT * FROM quotes WHERE year = ?', [req.query.year], function(err, row){
            
             if(err){
                 res.send(err.message);
             }
             else{
                 console.log("Return a list of quotes from the year: " + req.query.year );
-                res.json(rows);
+                res.json (row);
             }
         });
         
-    }}
+    }
     else{
         db.all('SELECT * FROM quotes', function getQuotes(err, rows){
             console.log('GET Quotes');
@@ -108,15 +108,11 @@ app.get('/quotes', function(req, res){
         }
     });
     }
-     
-        
     // Notes: * We use the db.all() method to retrieve a set of rows with a SELECT statement .*
     //  We return the result set as JSON using the res.json() method .
     // * We check the req.query property to determine if the API request includes a year parameter.
     //  * We include a WHERE clause in our SELECT statement to filter by year.
     //  * we include the year filter as a parameter for our SQL statement, using the '?' placeholder in the SQL statement, and providing the year value as a parameter in the db.all() call
-    
-    
 })
 
 // If the endpoint for the Express API were defined as: GET /cars/:make,

@@ -106,9 +106,15 @@ app.get('/quotes', function(req, res){
             res.json(rows)
         }
     }
+    // Notes: * We use the db.all() method to retrieve a set of rows with a SELECT statement .*
+    //  We return the result set as JSON using the res.json() method .
+    // * We check the req.query property to determine if the API request includes a year parameter.
+    //  * We include a WHERE clause in our SELECT statement to filter by year.
+    //  * we include the year filter as a parameter for our SQL statement, using the '?' placeholder in the SQL statement, and providing the year value as a parameter in the db.all() call
     
     
 })
+
 // If the endpoint for the Express API were defined as: GET /cars/:make,
 //  then the value "Toyota" would automatically be processed into the make parameter within the GET /cars route.
 // In an Express app, we can then access these parameters using req.params.<param>, 

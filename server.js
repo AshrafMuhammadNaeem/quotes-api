@@ -49,21 +49,7 @@ app.listen(port, function(){
 // accepts requests at the GET / endpoint, and responds with the message "Get request received at '/'"
 app.get('/', function(request, response){
     response.send("Get request received at '/'")
-})
-//  Now Queries in db format
-
-
-function getQuotes(err, res){
-    console.log('GET Quotes');
-    if (err){
-        console.log("Errro" + err.message)
-    }
-    else{
-        for (var i = 0; i < quotes.length; i++){
-            console.log(rows[i].quote)
-        }
-    }
-}
+});
 //  Now start the server with node server.js in terminal and then go on to localhost:3000
 // to see the message "Get request reeceived at '/"
 

@@ -81,8 +81,8 @@ app.get('/quotes', function(req, res){
     // if there is a year filter provided, run a SELECT statement with a WHERE clause to select all quotes with the given year, and return the resulting set of quotes as JSON.
     // otherwise, run a SELECT statement that returns the entire set of quotes from the database as JSON
     if(req.query.year){
-        db.all('SELECT * FROM Quotes', getQuotes);
-        db.get('SELECT * FROM Quotes WHERE year = ?' [req.query.year], function(err, rows){
+        
+        db.get('SELECT * FROM quotes WHERE year = ?' [req.query.year], function(err, rows){
             console.log("Get This Year Quote:");
             if(err){
                 res.send(err.message);
@@ -94,8 +94,9 @@ app.get('/quotes', function(req, res){
         });
         
     }
-    function getQuotes(err, rows){
-        console.log('GET Quotes');
+    else{
+        db.all('SELECT * FROM quotes', function getQuotes(err, rows){
+            console.log('GET Quotes');
         if (err){
             res.send(err.message)
         }
@@ -105,7 +106,10 @@ app.get('/quotes', function(req, res){
             }
             res.json(rows)
         }
+    });
     }
+     
+        
     // Notes: * We use the db.all() method to retrieve a set of rows with a SELECT statement .*
     //  We return the result set as JSON using the res.json() method .
     // * We check the req.query property to determine if the API request includes a year parameter.

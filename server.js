@@ -172,8 +172,24 @@ app.use(bodyParser.urlencoded({extended: true}))
 // Our POST /quotes route will be defined as:
 app.post('/quotes', function(req, res){
     console.log("insert a new quote" + req.body.quote);
-    res.json(req.body)
-})
+    // Try to modify the body of the POST /quotes route in your server.js file
+    //  to run an INSERT statement, using the user-submitted values from req.body
+    db.run('INSERT INTO Quotes VALUES (?, ?, ?, ?)', [req.body.ID, req.body.quote, req.body.author,
+         req.body.year], function(err){
+             if(err){
+                 console.log(err.message);
+             }
+             else{
+                res.send('Inserted quoted with ID:', + this.lastID);
+             }
+         })
+//    Notes:
+
+    // We use db.run() to run an INSERT SQL statement
+    // We provide parameters to the INSERT statement, pulling the data from the request body using req.body. for each property
+    // We send a message with the ID of the new quote in the table, pulling this.lastID from the callback method of the db.run() method.
+
+});
 
 // We are using req.body.quote to get the quote string, and sending the full JSON object 
 // representing all of the quote's data (quote, author, year), using req.body.

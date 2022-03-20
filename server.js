@@ -127,7 +127,7 @@ app.get('/quotes', function(req, res){
 app.get('/quotes/:id', function(req, res){
     console.log("Return the quote with id:" + req.params.id);
     if(req.params.id){
-        db.each('SELECT * FROM quotes WHERE ID = 1', function getID(err, row){
+        db.each('SELECT * FROM quotes WHERE rowid = 1', function getID(err, row){
             if(err){
                 res.send(err.message);
             }

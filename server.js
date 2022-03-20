@@ -134,6 +134,13 @@ app.get('/quotes/:id', function(req, res){
             else{
                 
                 res.json(row);
+                // Notes:
+    // we use the db.get() method to retrieve up to 1 result for the SELECT statement, since there can only be 1 quote with a given id.
+    // if there is no quote with the given id, we return an empty object
+    // SQLite automatically includes a rowid attribute in our table, that auto-increments for each entry. Thus, each of our quotes has a unique id.
+    // we include a WHERE clause in our SELECT statement to filter by ID using the provided request parameter
+    // we include the ID parameter as a parameter for our SQL statement, using the '?' placeholder in the SQL statement, and providing the ID as a parameter in the db.get() call
+
 
             }
         })
@@ -141,6 +148,10 @@ app.get('/quotes/:id', function(req, res){
     }
     
 });
+// Run your server in the command prompt using the node server.js command.
+// Open your browser and navigate to localhost:3000/quotes/2.
+// Navigate to localhost:3000/quotes/100. Your API should return an empty object.
+
 //Here, we are accessing the dynamic id parameter value using req.params.id.
 // Now that we've set up 2 GET Routes in our API,
 //  let's add a POST route that will allow users to send data to be stored.

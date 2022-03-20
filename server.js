@@ -8,26 +8,26 @@ var app = express();
 // Import the sqlite3 module in your Node.js project:
 var sqlite3 = require('sqlite3');
 // here below will come hard coded data base for quotes
-var quotes = [
-    {
-        id: 1,
-        quote: "The best is yet to come",
-        author: "Unknown",
-        year: 2000
-    },
-    {
-        id: 2,
-        quote: "This is a quote",
-        author: "First Last",
-        year: 1930
-    },
-    {
-        id: 3,
-        quote: "This is another quote",
-        author: "First2 Last2",
-        year: 1910
-    }
-    ];
+// var quotes = [
+//     {
+//         id: 1,
+//         quote: "The best is yet to come",
+//         author: "Unknown",
+//         year: 2000
+//     },
+//     {
+//         id: 2,
+//         quote: "This is a quote",
+//         author: "First Last",
+//         year: 1930
+//     },
+//     {
+//         id: 3,
+//         quote: "This is another quote",
+//         author: "First2 Last2",
+//         year: 1910
+//     }
+//     ];
 
 // Connect to DataBase now the permanent one quotes.db
 var db = new sqlite3.Database('quotes.db');
@@ -126,8 +126,21 @@ app.get('/quotes', function(req, res){
 // /quotes/2
 app.get('/quotes/:id', function(req, res){
     console.log("Return the quote with id:" + req.params.id);
-    res.send("Return quote with the ID:" + req.params.id);
-})
+    if(req.params.id){
+        db.each('SELECT * FROM quotes WHERE ID = 1', function getID(err, row){
+            if(err){
+                res.send(err.message);
+            }
+            else{
+                
+                res.json(row);
+
+            }
+        })
+        
+    }
+    
+});
 //Here, we are accessing the dynamic id parameter value using req.params.id.
 // Now that we've set up 2 GET Routes in our API,
 //  let's add a POST route that will allow users to send data to be stored.
